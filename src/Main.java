@@ -1,13 +1,35 @@
-//TIP Чтобы <b>запустить</b> код, нажмите <shortcut actionId="Run"/> или
-// нажмите на значок <icon src="AllIcons.Actions.Execute"/> в поле.
-void main() {
-    //TIP Нажмите <shortcut actionId="ShowIntentionActions"/>, когда курсор находится на выделенном тексте
-    // чтобы увидеть, как OpenIDE предлагает это исправить.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Нажмите <shortcut actionId="Debug"/>, чтобы начать отладку вашего кода. Мы установили одну <icon src="AllIcons.Debugger.Db_set_breakpoint"/> точку останова
-        // для вас, но вы всегда можете добавить больше, нажав <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    System.out.println("Введите число, будут выведены все простые числа идущие до него:");
+    boolean notError = true;
+    int num = 0;
+    while (notError) {
+        try {
+            num = in.nextInt();
+            if (num <1) {
+                System.out.println("Число должно быть больше 1-го");
+
+            } else notError = false;
+        } catch (InputMismatchException e) {
+            System.out.println("Ошибка: введите целое число!");
+            in.next();
+
+        }
+    }
+
+    for (int i = 2; i<num+1; i++){
+        boolean isPrime = true;
+            for (int j = 2; j <= Math.sqrt(i); j++){
+            if (i % j == 0) {
+                isPrime = false;
+            }
+
+        }
+            if (isPrime) {
+            System.out.printf("%d ", i);
+        }
     }
 }
